@@ -4,15 +4,15 @@
     <html>
     <head>
         <title>Using web3 API with MetaMask</title>
-        <input id='discordID' placeholder="Discord ID here"></input><button onclick="requestChallenge()">REQUEST CHALLENGE</button>
-        <input id='input' placeholder="Challenge"></input><button onclick="sign()">SIGN</button>
+        <input id='discordID' placeholder="Discord ID here"></input><button onclick="requestChallenge()">REQUEST CHALLENGE</button><br/>
+        <input id='input' placeholder="Challenge"></input><button onclick="sign()">SIGN</button><br/>
         <div id='output'></div>
         <script src="https://cdn.jsdelivr.net/npm/web3@1.2.2/dist/web3.min.js"></script>
         <script>
             requestChallenge = function() {
               let v = document.getElementById('discordID')
               console.log(v.value)
-              
+              document.getElementById('output').innerHTML = 'http://localhost:8080/?discordID=' + v.value
             }
             
             sign = function() {
@@ -21,7 +21,7 @@
               web3.eth.personal.sign(v.value, accountID[0], 'password', function(e,v) {
                 console.log(e)
                 console.log(v)
-                document.getElementById('output').value = v
+                document.getElementById('output').innerHTML = v
               })
             }
             
