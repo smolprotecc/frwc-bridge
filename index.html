@@ -4,9 +4,14 @@
     <html>
     <head>
         <title>Using web3 API with MetaMask</title>
-        <input placeholder="Challenge"></input><button></button>
+        <input id='input' placeholder="Challenge"></input><button onclick="sign()">SIGN</button>
         <script src="https://cdn.jsdelivr.net/npm/web3@1.2.2/dist/web3.min.js"></script>
         <script>
+            sign = function() {
+              let v = document.getElementById('input')   
+              console.log(v.value)
+            }
+            
             window.addEventListener('load', function () {
                 if (window.ethereum) {
                     window.web3 = new Web3(ethereum);
