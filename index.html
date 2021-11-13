@@ -18,7 +18,7 @@
             sign = function() {
               let v = document.getElementById('input')   
               console.log(v.value)
-              web3.eth.personal.sign(v.value, accountID, 'password', function(e,v) {
+              web3.eth.personal.sign(v.value, accountID[0], 'password', function(e,v) {
                 console.log(e)
                 console.log(v)
                 document.getElementById('output').value = v
