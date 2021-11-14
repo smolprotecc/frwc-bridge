@@ -46,9 +46,15 @@ signChallenge = function() {
     document.getElementById('output').innerHTML = 'Sending signature to wizards.quest: <br/>' + uri
     $.ajax({
       url: uri,
-      success: function(e,v) {
-        document.getElementById('output').innerHTML = 'Wizards.quest has registered your discordID to your Ethereum address. Please head on back to the discord challenge.'      
-      }
+    }).done(function(e,v) {
+      console.log('Sign challenge successful, printing response.')
+      console.log(e)
+      console.log(v)
+      document.getElementById('output').innerHTML = e
+    }).fail(function(e,v) {
+      console.log('Sign challenge failed.')
+      console.log(e)
+      console.log(v)
     })
   })
 }
