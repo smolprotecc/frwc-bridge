@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-    <meta content="utf-8" http-equiv="encoding">
-    <html>
-    <head>
-        <title>Using web3 API with MetaMask</title>
-        <input id='discordID' placeholder="Discord ID here"></input><button onclick="requestChallenge()">REQUEST CHALLENGE</button><br/>
-        <input id='input' placeholder="Challenge"></input><button onclick="sign()">SIGN</button><br/>
-        <div id='output'></div>
-        <script src="https://cdn.jsdelivr.net/npm/web3@1.2.2/dist/web3.min.js"></script>
-        <script>
+<!DOCTYPE html><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta content="utf-8" http-equiv="encoding">
+<html><head><title>FRWC Connect</title>
+<!-- JQuery for convenience -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Web3 for utilising Metamask -->
+<script src="https://cdn.jsdelivr.net/npm/web3@1.2.2/dist/web3.min.js"></script>
+
+<script>
             requestChallenge = function() {
               let v = document.getElementById('discordID')
               console.log(v.value)
@@ -56,5 +55,10 @@
                 }
             });
         </script>
-    </head>
-    </html>
+</head>
+<body>
+  <input id='discordID' placeholder="Discord ID here"></input><button onclick="requestChallenge()">REQUEST CHALLENGE</button><br/>
+  <input id='input' placeholder="Challenge"></input><button onclick="sign()">SIGN</button><br/>
+  <div id='output'></div>
+</body>
+</html>
