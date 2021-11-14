@@ -1,11 +1,17 @@
-<!DOCTYPE html><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta content="utf-8" http-equiv="encoding">
-<html><head><title>FRWC Connect</title>
-<!-- JQuery for convenience -->
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<head>
+<title>FRWC Connect</title>
+<!-- JQuery for convenience calling remote webserver -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" 
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" 
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Web3 for utilising Metamask -->
-<script src="https://cdn.jsdelivr.net/npm/web3@1.2.2/dist/web3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1-rc.3/web3.min.js" 
+        integrity="sha512-0KTZZdA9E3vaLClQkC6S9roiHr9J2A79Q/BvcIwd8LjRVAQcwrT1zorS7hfZ7B3Nr/u6bYzNG/wXOAOADdJ7qQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
             requestChallenge = function() {
@@ -27,34 +33,32 @@
               })
             }
             
-            let accountID = '';
-            window.addEventListener('load', function () {
-                if (window.ethereum) {
-                    window.web3 = new Web3(ethereum);
-                    ethereum.enable()
-                        .then(() => {
-                            console.log("Ethereum enabled");
-    
-                            web3.eth.getAccounts(function (err, acc) {
-                                if (err != null) {
-                                    self.setStatus("There was an error fetching your accounts");
-                                    return;
-                                }
-                                if (acc.length > 0) {
-                                    accountID = acc;
-                                    console.log(acc);
-                                }
-                            });
-                        })
-                        .catch(() => {
-                            console.warn('User didn\'t allow access to accounts.');
-                            waitLogin();
-                        });
-                } else {
-                    console.log("Non-Ethereum browser detected. You should consider installing MetaMask.");
-                }
-            });
-        </script>
+  let accountID = '';
+  window.addEventListener('load', function () {
+    if (window.ethereum) {
+      window.web3 = new Web3(ethereum);
+      ethereum.enable()
+         .then(() => {
+         console.log("Ethereum enabled");
+         web3.eth.getAccounts(function (err, acc) {
+              if (err != null) {
+                self.setStatus("There was an error fetching your accounts");
+                return;
+              }
+              if (acc.length > 0) {
+                accountID = acc;
+                console.log(acc);
+              }
+         });
+         }).catch(() => {
+           console.warn('User didn\'t allow access to accounts.');
+           waitLogin();
+         });
+    } else {
+      console.log("Non-Ethereum browser detected. You should consider installing MetaMask.");
+    }
+  });
+</script>
 </head>
 <body>
   <input id='discordID' placeholder="Discord ID here"></input><button onclick="requestChallenge()">REQUEST CHALLENGE</button><br/>
