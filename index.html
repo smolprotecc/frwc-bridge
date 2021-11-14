@@ -18,17 +18,18 @@ remote = 'https://api.wizards.quest/'
 
 requestChallenge = function() {
   let v = document.getElementById('discordID')
-  console.log(v.value)
+  let discordID = v.value
+  console.log(discordID)
   document.getElementById('output').innerHTML += '<br/>Requesting Challenge from wizards.quest.'
         
   $.ajax({
-    url: remote + '?discordID=' + v.value,
+    url: remote + '?discordID=' + discordID,
   }).done(function(e,v) {
     console.log(e)
     let s = e.split(';')
     let u = s[0]
     console.log(u)
-    document.getElementById('input').value = u + '-' + v.value
+    document.getElementById('input').value = u + '-' + discordID
     document.getElementById('output').innerHTML += '<br/>Received challenge from wizards.quest. Please sign this readable message with your Metamask.'
   }).fail(function(e,v) {
     console.log('Request challenge failed.')
