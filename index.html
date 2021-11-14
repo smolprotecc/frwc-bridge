@@ -23,14 +23,17 @@ requestChallenge = function() {
         
   $.ajax({
     url: remote + '?discordID=' + v.value,
-    success: function(e, v) {
-      console.log(e)
-      let s = e.split(';')
-      let u = s[0]
-      console.log(u)
-      document.getElementById('input').value = u + '-' + accountID[0]
-      document.getElementById('output').innerHTML = 'Received challenge from wizards.quest. Please sign this readable message with your Metamask.'
-    }
+  }).done(function(e,v) {
+    console.log(e)
+    let s = e.split(';')
+    let u = s[0]
+    console.log(u)
+    document.getElementById('input').value = u + '-' + accountID[0]
+    document.getElementById('output').innerHTML = 'Received challenge from wizards.quest. Please sign this readable message with your Metamask.'
+  }).fail(function(e,v) {
+    console.log('Request challenge failed.')
+    console.log(e)
+    console.log(v)
   })
 }
         
