@@ -14,24 +14,41 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-            requestChallenge = function() {
-              let v = document.getElementById('discordID')
-              console.log(v.value)
-              document.getElementById('output').innerHTML = 'http://localhost:8080/?discordID=' + v.value
-            }
-            
-            sign = function() {
-              let v = document.getElementById('input')   
-              let d = document.getElementById('discordID')
-              console.log(v.value)
-              web3.eth.personal.sign(v.value, accountID[0], 'password', function(e,b) {
-                console.log(e)
-                console.log(b)
-                output  = b + ' <br/> '
-                output += 'http://localhost:8080/?challenge=' + v.value + '&response=' + b
-                document.getElementById('output').innerHTML = output
-              })
-            }
+remote = 'http://api.wizards.quest/'        
+
+requestChallenge = function() {
+  let v = document.getElementById('discordID')
+  console.log(v.value)
+  document.getElementById('output').innerHTML = 'Requesting Challenge from wizards.quest.'
+        
+  $.ajax({
+    url: remote + '?discordID=' + v.value,
+    success: function(e, v) {
+      console.log(e)
+      let s = e.split(';')
+      let u = s[0]
+      console.log(u)
+      document.getElementById('input').value = u + '-' + accountID[0]
+      document.getElementById('output').innerHTML = 'Received challenge from wizards.quest. Please sign this readable message with your Metamask.'
+    })
+  })
+}
+        
+signChallenge = function() {
+  let v = document.getElementById('input')
+  console.log(v.value)
+  web3.eth.personal.sign(v.value, accountID[0], 'password', function(e,b) {
+    console.log(b)
+    let uri = remote + '?challenge=' + v.value + '&response=' + b
+    document.getElementById('output').innerHTML = 'Sending signature to wizards.quest: <br/>' + uri
+    $.ajax({
+      url: uri,
+      success: function(e,v) {
+        document.getElementById('output').innerHTML = 'Wizards.quest has registered your discordID to your Ethereum address. Please head on back to the discord challenge.'      
+      })
+    })
+  })
+}
             
   let accountID = '';
   window.addEventListener('load', function () {
