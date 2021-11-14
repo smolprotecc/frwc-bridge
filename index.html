@@ -30,7 +30,7 @@ requestChallenge = function() {
       console.log(u)
       document.getElementById('input').value = u + '-' + accountID[0]
       document.getElementById('output').innerHTML = 'Received challenge from wizards.quest. Please sign this readable message with your Metamask.'
-    })
+    }
   })
 }
         
@@ -45,7 +45,7 @@ signChallenge = function() {
       url: uri,
       success: function(e,v) {
         document.getElementById('output').innerHTML = 'Wizards.quest has registered your discordID to your Ethereum address. Please head on back to the discord challenge.'      
-      })
+      }
     })
   })
 }
