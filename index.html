@@ -26,6 +26,7 @@ requestChallenge = function() {
     url: remote + '?discordID=' + discordID,
   }).done(function(e,v) {
     console.log(e)
+    console.log(typeof e)
     let s = JSON.parse(e)
     let u = s.response
     console.log(u)
