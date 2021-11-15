@@ -26,8 +26,8 @@ requestChallenge = function() {
     url: remote + '?discordID=' + discordID,
   }).done(function(e,v) {
     console.log(e)
-    let s = e.split(';')
-    let u = s[0]
+    let s = JSON.parse(e)
+    let u = s.response
     console.log(u)
     document.getElementById('input').value = u + '-' + discordID
     document.getElementById('output').innerHTML += '<br/>Received challenge from wizards.quest. Please sign this readable message with your Metamask.'
@@ -51,7 +51,8 @@ signChallenge = function() {
       console.log('Sign challenge successful, printing response.')
       console.log(e)
       console.log(v)
-      document.getElementById('output').innerHTML += '<br/>' + e
+      let s = JSON.parse(e)
+      document.getElementById('output').innerHTML += '<br/>' + s.response
     }).fail(function(e,v) {
       console.log('Sign challenge failed.')
       console.log(e)
