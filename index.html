@@ -47,15 +47,10 @@ signChallenge = function() {
       url: uri,
     }).done(function(e,v) {
       console.log('Sign challenge successful, printing response.')
-      console.log(e)
-      console.log(v)
-      console.log(e.response)
-      let s = JSON.parse(e)
-      document.getElementById('output').innerHTML += '<br/>' + s.response
+      document.getElementById('output').innerHTML += '<br/>' + e.response
     }).fail(function(e,v) {
       console.log('Sign challenge failed.')
       console.log(e)
-      console.log(v)
     })
   })
 }
