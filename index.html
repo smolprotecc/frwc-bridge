@@ -27,6 +27,8 @@ requestChallenge = function() {
   }).done(function(e,v) {
     console.log(e)
     console.log(typeof e)
+    console.log(e.response)
+    console.log(e.other)
     let s = JSON.parse(e)
     let u = s.response
     console.log(u)
