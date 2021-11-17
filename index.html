@@ -15,8 +15,20 @@
 
 <script>
 // remote = 'https://api.wizards.quest/'     
-remote = 'https://wizards.quest/'        
+remote = 'https://wizards.quest/'
 
+// Update the Discord User field
+let pageURL = window.location.search.substring(1)
+let urlVariables = pageURL.split('&')
+let regex = /user\=(\d+)/
+for (var i = 0; i < urlVariables.length; i++) {
+  if (urlVariables[i].match(regex)) {
+    document.getElementById('discordID').value = urlVariables[i].replace('user=','')
+    break
+  }
+}
+
+// Request a Challenge from the User
 requestChallenge = function() {
   let v = document.getElementById('discordID')
   let discordID = v.value
@@ -36,7 +48,8 @@ requestChallenge = function() {
     console.log(v)
   })
 }
-        
+
+// Sign the Human Readable string from the Remote server
 signChallenge = function() {
   let v = document.getElementById('input')
   console.log(v.value)
@@ -55,7 +68,8 @@ signChallenge = function() {
     })
   })
 }
-            
+
+// Initialization
 let accountID = '';
 window.addEventListener('load', function () {
   if (window.ethereum) {
@@ -63,6 +77,7 @@ window.addEventListener('load', function () {
     ethereum.enable()
        .then(() => {
        console.log("Ethereum enabled");
+       // Assign Web3 Accounts to variable
        web3.eth.getAccounts(function (err, acc) {
             if (err != null) {
               self.setStatus("There was an error fetching your accounts");
