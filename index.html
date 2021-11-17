@@ -17,17 +17,6 @@
 // remote = 'https://api.wizards.quest/'     
 remote = 'https://wizards.quest/'
 
-// Update the Discord User field
-let pageURL = window.location.search.substring(1)
-let urlVariables = pageURL.split('&')
-let regex = /user\=(\d+)/
-for (var i = 0; i < urlVariables.length; i++) {
-  if (urlVariables[i].match(regex)) {
-    document.getElementById('discordID').value = urlVariables[i].replace('user=','')
-    break
-  }
-}
-
 // Request a Challenge from the User
 requestChallenge = function() {
   let v = document.getElementById('discordID')
@@ -72,13 +61,25 @@ signChallenge = function() {
 // Initialization
 let accountID = '';
 window.addEventListener('load', function () {
+  // Update the Discord User field
+  let pageURL = window.location.search.substring(1)
+  let urlVariables = pageURL.split('&')
+  let regex = /user\=(\d+)/
+  for (var i = 0; i < urlVariables.length; i++) {
+    if (urlVariables[i].match(regex)) {
+      document.getElementById('discordID').value = urlVariables[i].replace('user=','')
+      break
+    }
+  }
+  
+  // Initialization for Web3 information
   if (window.ethereum) {
     window.web3 = new Web3(ethereum);
     ethereum.enable()
        .then(() => {
        console.log("Ethereum enabled");
        // Assign Web3 Accounts to variable
-       web3.eth.getAccounts(function (err, acc) {
+       web3.eth.getAccounts(function (err, acc) { /* The only initial interaction with Web3 information pre-verification */
             if (err != null) {
               self.setStatus("There was an error fetching your accounts");
               return;
