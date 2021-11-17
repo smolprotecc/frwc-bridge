@@ -16,25 +16,16 @@
 body {
   background-color: rgb(175, 223, 227);        
 }
-#shift-right {
-  position: absolute;
-  top : 0%;
-  left: 109px;
-}
 #picture {
   position: absolute;
   top : 0%;
-  left: 0%;
+  right: 0%;
   width: 100px;
   height: auto;
 }
-#verify {
+.line {
   height: 1.6em;
   line-height: 1.6em;        
-}
-#output {
-  position: absolute;
-  top: 109px;
 }
 </style>
 <script>
@@ -124,12 +115,10 @@ window.addEventListener('load', function () {
 </script>
 </head>
 <body>
-  <img id='picture' src='Dwarzgarth_400.gif'></div>
-  <div id='shift-right'>
-  <div id='verify'>Verify the code for this page here: <a href="https://github.com/smolprotecc/frwc-bridge">https://github.com/smolprotecc/frwc-bridge</a></div>
-  <input id='discordID' placeholder="Discord ID here"></input><button onclick="requestChallenge()">REQUEST CHALLENGE</button><br/>
-  <input id='input' placeholder="Challenge"></input><button onclick="signChallenge()">SIGN</button><br/>
-  </div>
+  <img id='picture' src='Dwarzgarth_400.gif'></img>
+  <div class='line'>Verify the code for this page here: <a href="https://github.com/smolprotecc/frwc-bridge">https://github.com/smolprotecc/frwc-bridge</a></div>
+  <div class='line'><input id='discordID' placeholder="Discord ID here"></input><button onclick="requestChallenge()">REQUEST CHALLENGE</button></div>
+  <div class='line'><input id='input' placeholder="Challenge"></input><button onclick="signChallenge()">SIGN</button></div>
   <div id='output'></div>
 </body>
 </html>
