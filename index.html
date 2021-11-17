@@ -25,8 +25,10 @@ body {
 }
 .line {
   height: 1.6em;
-  line-height: 1.6em;        
+  line-height: 1.6em;
+  z-index: 3;
 }
+#output { z-index: 3; }
 </style>
 <script>
 // remote = 'https://api.wizards.quest/'     
@@ -116,7 +118,7 @@ window.addEventListener('load', function () {
 </head>
 <body>
   <img id='picture' src='Dwarzgarth_400.gif'></img>
-  <div class='line'>Verify the code for this page here: <a href="https://github.com/smolprotecc/frwc-bridge">https://github.com/smolprotecc/frwc-bridge</a></div>
+  <div class='line'>Verify the code for this page here: <a href="https://github.com/smolprotecc/frwc-bridge" target="_blank">https://github.com/smolprotecc/frwc-bridge</a></div>
   <div class='line'><input id='discordID' placeholder="Discord ID here"></input><button onclick="requestChallenge()">REQUEST CHALLENGE</button></div>
   <div class='line'><input id='input' placeholder="Challenge"></input><button onclick="signChallenge()">SIGN</button></div>
   <div id='output'></div>
