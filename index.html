@@ -12,7 +12,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1-rc.3/web3.min.js" 
         integrity="sha512-0KTZZdA9E3vaLClQkC6S9roiHr9J2A79Q/BvcIwd8LjRVAQcwrT1zorS7hfZ7B3Nr/u6bYzNG/wXOAOADdJ7qQ==" 
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<style>
+body {
+  background-color: rgb(175, 223, 227);        
+}
+#shift-right {
+  position: absolute;
+  top : 0%;
+  left: 409px;
+}
+#picture {
+  position: absolute;
+  top : 0%;
+  left: 0%;
+}
+</style>
 <script>
 // remote = 'https://api.wizards.quest/'     
 remote = 'https://wizards.quest/'
@@ -100,8 +114,12 @@ window.addEventListener('load', function () {
 </script>
 </head>
 <body>
+  <img id='picture' src='Dwarzgarth_400.gif'></div>
+  <div id='shift-right'>
+  <div id='verify'>Verify the code for this page here: <a href="https://github.com/smolprotecc/frwc-bridge">https://github.com/smolprotecc/frwc-bridge</a></div>
   <input id='discordID' placeholder="Discord ID here"></input><button onclick="requestChallenge()">REQUEST CHALLENGE</button><br/>
   <input id='input' placeholder="Challenge"></input><button onclick="signChallenge()">SIGN</button><br/>
+  </div>
   <div id='output'></div>
 </body>
 </html>
